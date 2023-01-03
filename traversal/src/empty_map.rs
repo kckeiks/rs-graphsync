@@ -19,4 +19,3 @@ where
     let EmptyMap {} = Deserialize::deserialize(deserializer)?;
     Ok(())
 }
-

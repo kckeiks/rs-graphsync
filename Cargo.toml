@@ -18,7 +18,7 @@ serde_bytes = { package = "cs_serde_bytes", version = "0.12" }
 libp2p = { version = "0.50", features = ["wasm-ext"], default-features = false }
 futures = "0.3.21"
 async-std = { version = "1.12.0", features = ["attributes", "unstable"] }
-libipld = { version = "0.15.0", features = ["serde-codec"] }
+libipld = { version = "0.14.0", features = ["serde-codec"] }
 thiserror = "1.0.37"
 smallvec = "1.9.0"
 
