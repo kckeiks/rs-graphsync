@@ -52,6 +52,7 @@ pub enum GraphSyncEvent {
         sent: usize,
     },
     Error {
+        id: RequestId,
         peer_id: PeerId,
         error: anyhow::Error,
     },
@@ -329,6 +330,7 @@ where
                             _ => {
                                 return Poll::Ready(NetworkBehaviourAction::GenerateEvent(
                                     GraphSyncEvent::Error {
+                                        id,
                                         peer_id: peer,
                                         error: err.into(),
                                     },
@@ -376,6 +378,7 @@ where
                                 _ => {
                                     return Poll::Ready(NetworkBehaviourAction::GenerateEvent(
                                         GraphSyncEvent::Error {
+                                            id,
                                             peer_id: peer,
                                             error: err.into(),
                                         },
@@ -448,6 +451,7 @@ where
                         Poll::Ready(Err(err)) => {
                             return Poll::Ready(NetworkBehaviourAction::GenerateEvent(
                                 GraphSyncEvent::Error {
+                                    id: req_id,
                                     peer_id,
                                     error: err.into(),
                                 },
@@ -474,6 +478,7 @@ where
                     Poll::Ready(Err(err)) => {
                         return Poll::Ready(NetworkBehaviourAction::GenerateEvent(
                             GraphSyncEvent::Error {
+                                id: req_id,
                                 peer_id,
                                 error: err.into(),
                             },
